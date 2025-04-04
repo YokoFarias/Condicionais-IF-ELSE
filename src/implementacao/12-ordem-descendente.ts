@@ -1,6 +1,20 @@
 function ordenarDescendente(a: number, b: number, c: number): number[] {
-    // Criamos um array com os números e ordenamos de forma descendente
-    return [a, b, c].sort((x, y) => y - x);
+    let menor:number=a;
+    let maior:number=a;
+    let meio:number=a;
+
+    if(b<menor)
+        menor=b;
+    if(c<menor)
+        menor=c;
+    if(b>maior)
+        maior=b;
+    if(c>maior)
+        maior=c;
+    meio=a+b+c-maior-menor;
+
+    return [maior,meio,menor]
+
 }
 module.exports = ordenarDescendente;
 // Testes

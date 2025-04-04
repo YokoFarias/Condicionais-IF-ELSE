@@ -1,26 +1,31 @@
-function calcularRaizOuQuadrado(n: number): number {
+function calcularRaizOuQuadrado(n: number): string {
     if (n >= 0) {
-        if (n === 0) return 0; // A raiz quadrada de 0 é 0
+        if (n === 0) return "A raiz quadrada de 0 é 0."; // Caso especial para 0
 
         let raiz = 1; // Começamos com um chute inicial pequeno
 
         // Aumentamos a raiz enquanto o próximo valor ainda for válido
-        while ((raiz + 1) * (raiz + 1) < n) {
+        while ((raiz + 1) * (raiz + 1) <= n) {
             raiz++;
         }
 
-        return raiz; // Retorna a melhor aproximação encontrada
+        // Se a raiz ao quadrado for exatamente n, é um quadrado perfeito
+        if (raiz * raiz === n) {
+            return `A raiz quadrada de ${n} é ${raiz}.`;
+        } else {
+            return `A raiz quadrada aproximada de ${n} é ${raiz} (não é uma raiz perfeita).`;
+        }
     } else {
-        return n * n; // Se for negativo, retorna o quadrado
+        return `O quadrado de ${n} é ${n * n}.`;
     }
 }
 
 // Testes
-console.log(calcularRaizOuQuadrado(16));  // Deve retornar 4
-module.exports =calcularRaizOuQuadrado;
-/**
-Se o número fornecido for 16, o algoritmo deve imprimir a raiz quadrada de 16, que é 4.
+console.log(calcularRaizOuQuadrado(16));  // Deve retornar "A raiz quadrada de 16 é 4."
+console.log(calcularRaizOuQuadrado(-3));  // Deve retornar "O quadrado de -3 é 9."
+console.log(calcularRaizOuQuadrado(0));   // Deve retornar "A raiz quadrada de 0 é 0."
+console.log(calcularRaizOuQuadrado(25));  // Deve retornar "A raiz quadrada de 25 é 5."
+console.log(calcularRaizOuQuadrado(10));  // Deve retornar "A raiz quadrada aproximada de 10 é 3 (não é uma raiz perfeita)."
+console.log(calcularRaizOuQuadrado(-7));  // Deve retornar "O quadrado de -7 é 49."
 
-Se o número fornecido for -3, o algoritmo deve imprimir o quadrado de -3, que é 9.
-Se o número fornecido for 0, o algoritmo deve imprimir a raiz quadrada de 0, que é 0.
- */
+module.exports = calcularRaizOuQuadrado;
